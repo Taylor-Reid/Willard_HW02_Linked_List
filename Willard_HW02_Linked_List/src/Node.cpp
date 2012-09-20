@@ -36,3 +36,15 @@ void deleteFromList(Node* remove_me){
 	//  The remove_me node is free
 	remove_me->~Node(); // Let remove_me be reclaimed
 }
+
+void reverseList(Node* sentinel) {
+	// The list will rearrange itself around the sentinel
+	Node* cur = sentinel->next;
+	while(cur != sentinel){
+		Node* temp = cur->next; // Swap next and prev
+		cur->next = cur->prev;
+		cur->prev = temp;
+		cur = cur->prev; // Remember, we're done, so prev is the new next
+	}
+
+}
