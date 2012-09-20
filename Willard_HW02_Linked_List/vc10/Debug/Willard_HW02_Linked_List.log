@@ -1,10 +1,13 @@
-﻿Build started 9/20/2012 5:40:37 PM.
+﻿Build started 9/20/2012 6:57:38 PM.
      1>Project "C:\Users\Cary\Documents\GitHub\Willard_HW02_Linked_List\Willard_HW02_Linked_List\vc10\Willard_HW02_Linked_List.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Willard_HW02_Linked_List.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\include /I..\..\..\..\..\..\..\Cinder\cinder_0.8.4_vc2010\include /I..\..\..\..\..\..\..\Cinder\cinder_0.8.4_vc2010\boost /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Node.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\include /I..\..\..\..\..\..\..\Cinder\cinder_0.8.4_vc2010\include /I..\..\..\..\..\..\..\Cinder\cinder_0.8.4_vc2010\boost /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Node.cpp ..\src\Willard_HW02_Linked_ListApp.cpp
          Node.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         Willard_HW02_Linked_ListApp.cpp
        ResourceCompile:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /I..\..\..\..\..\..\..\Cinder\cinder_0.8.4_vc2010\include /I..\include /nologo /fo"Debug\Resources.res" Resources.rc 
        ManifestResourceCompile:
@@ -27,4 +30,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.38
+Time Elapsed 00:00:01.44

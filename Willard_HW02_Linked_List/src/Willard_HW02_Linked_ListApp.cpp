@@ -1,5 +1,6 @@
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
+#include "Node.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -7,6 +8,9 @@ using namespace std;
 
 class Willard_HW02_Linked_ListApp : public AppBasic {
   public:
+
+	Node* sentinel;
+
 	void setup();
 	void mouseDown( MouseEvent event );	
 	void update();
