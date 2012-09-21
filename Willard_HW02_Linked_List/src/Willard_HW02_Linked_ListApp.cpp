@@ -1,5 +1,32 @@
+
 #include "Resources.h"
 
+#include "cinder/app/AppBasic.h"
+#include "cinder/CinderResources.h"
+#include "cinder/gl/gl.h"
+#include "cinder/gl/Texture.h"
+#include "cinder/ImageIo.h"
+
+using namespace ci;
+using namespace ci::app;
+using namespace std;
+
+class Willard_HW02_Linked_ListApp : public AppBasic {
+  public:
+
+	Node* sentinel;
+	static const int kAppWidth = 900;
+	static const int kAppHeight = 900;
+	static const int kSurfaceSize=1024;
+	Surface* mySurface_;
+	uint8_t* myPixels_;
+
+	void setup();
+	static void drawShape(uint8_t* pixels, int x, int y, int height, int width, Color c, uint8_t alpha);
+	void mouseDown( MouseEvent event );	
+	void update();
+	void draw();
+};
 
 void Willard_HW02_Linked_ListApp::setup()
 {
@@ -8,18 +35,18 @@ void Willard_HW02_Linked_ListApp::setup()
 	myPixels_ = (*mySurface_).getData();
 }
 
-void Willard_HW02_Linked_ListApp::drawShape(uint8_t* pixels, Shape myShape, int height, int width, Color c, uint8_t alpha){
+void Willard_HW02_Linked_ListApp::drawShape(uint8_t* pixels, int x, int y, int height, int width, Color c, uint8_t alpha){
 
 	
 		if(width <= 0) return;
 		if(height <= 0) return;
 
-		for(int ky=myShape.y-height;ky<=myShape.y+height; ky++){
-			for(int kx=myShape.x-width;kx<=myShape.x+width;kx++){
+		for(int ky=y-height;ky<=y+height; ky++){
+			for(int kx=x-width;kx<=x+width;kx++){
 
 				if(ky < 0 || kx < 0 || kx >= kAppWidth || ky >= kAppHeight) continue;
 
-				if((kx == myShape.x-width)||(kx == myShape.x+width)||(ky == myShape.y-height)||(ky == myShape.y+height)) {
+				if((kx == x-width)||(kx == x+width)||(ky == y-height)||(ky == y+height)) {
 
 					int indeces = 4*(kx + ky*kSurfaceSize);
 					pixels[indeces] = c.r;

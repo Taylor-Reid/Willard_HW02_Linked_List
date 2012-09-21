@@ -1,14 +1,14 @@
+
 #include "Node.h"
 
 
-Node::Node(void)
+Node::Node()
 {
 }
 
 
 Node::~Node(void)
 {
-
 }
 
 void insert(Node* insert_me, Node* after_me){
