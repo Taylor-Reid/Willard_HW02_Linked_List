@@ -18,6 +18,9 @@ class Willard_HW02_Linked_ListApp : public AppBasic {
 	static const int kAppWidth = 900;
 	static const int kAppHeight = 900;
 	static const int kSurfaceSize=1024;
+	int frameNumber;
+	int mouse_x;
+	int mouse_y;
 	Surface* mySurface_;
 	uint8_t* myPixels_;
 
@@ -36,6 +39,10 @@ void Willard_HW02_Linked_ListApp::setup()
 	myPixels_ = (*mySurface_).getData();
 	clear(myPixels_);
 
+	// Initialize automation variables
+	frameNumber = 0;
+	mouse_x = 0;
+	mouse_y = 0;
 
 	// Initialize linked list
 	sentinel = &Node(100,100,100,100,127,127,127,5);
@@ -43,20 +50,21 @@ void Willard_HW02_Linked_ListApp::setup()
 	// Fill List
 	Node* last = sentinel;
 	Node* cur;
-	cur = new Node(100+(5),100-(5),100,100,127,127,127,5);
+	//cur = new Node(100+(5),100-(5),100,100,127,127,127,5);
 
-	//for(int i = 0; i<3; i++){
-		//cur = &Node(100+(5*i),100-(5*i),100,100,127,127,127,5);
+	for(int i = 0; i<4; i++){
+		cur = (new Node(100+(20*i),100+(20*i),100,100,80,80+(40*i),80+(5*i),64*i));
 		((Node)*cur).insert(cur, last);
 		last = cur;
-	//}
+	}
 	
+	sentinel->reverseList(sentinel);
 
 	cur = sentinel->next;
-	//while(cur != sentinel){
+	while(cur != sentinel){
 		drawRectangle(myPixels_, cur);
-		//cur = cur->next;
-	//}
+		cur = cur->next;
+	}
 }
 
 void Willard_HW02_Linked_ListApp::clear(uint8_t* pix){
@@ -74,22 +82,22 @@ void Willard_HW02_Linked_ListApp::clear(uint8_t* pix){
 void Willard_HW02_Linked_ListApp::drawRectangle(uint8_t* pixels, Node* n){
 
 	uint8_t a = n->alpha;
-	Color c = Color(n->r,n->g,n->b);
+	//Color c = Color(n->r,n->g,n->b);
 	
 	if(n->width <= 0) return;
 	if(n->height <= 0) return;
 
-	for(int ky=n->y-n->height;ky<=n->y+n->height; ky++){
-		for(int kx=n->x-n->width;kx<=n->x+n->width;kx++){
+	for(int ky=(n->y);ky<=(n->y)+(n->height); ky++){
+		for(int kx=(n->x);kx<=(n->x)+(n->width);kx++){
 
 			if(ky < 0 || kx < 0 || kx >= kAppWidth || ky >= kAppHeight) continue;
 
-			if((kx == n->x-n->width)||(kx == n->x+n->width)||(ky == n->y-n->height)||(ky == n->y+n->height)) {
+			if((kx >= (n->x))&&(kx <= (n->x)+(n->width))&&(ky >= (n->y))&&(ky <= (n->y)+(n->height))) {
 
 				int indeces = 4*(kx + ky*kSurfaceSize);
-				pixels[indeces] = c.r;
-				pixels[indeces+1] = c.g;
-				pixels[indeces+2] = c.b;
+				pixels[indeces] = n->r;
+				pixels[indeces+1] = n->g;
+				pixels[indeces+2] = n->b;
 				pixels[indeces+3] = n->alpha;
 			}
 		}
@@ -98,16 +106,28 @@ void Willard_HW02_Linked_ListApp::drawRectangle(uint8_t* pixels, Node* n){
 
 void Willard_HW02_Linked_ListApp::mouseDown( MouseEvent event )
 {
+	//mouse_x = event.getX();
+	//mouse_y = event.getY();
 }
 
 void Willard_HW02_Linked_ListApp::update()
 {
+	/*
+	frameNumber++;
+	clear(myPixels_);
+	Node* current = new Node();
+	//sentinel->next = current;
+	current = sentinel->next;
+	
+	while(current != sentinel){
+		drawRectangle(myPixels_, current);
+		current = current->next;
+	}
+	*/
 }
 
 void Willard_HW02_Linked_ListApp::draw()
 {
-	// clear out the window with black
-	//gl::clear( Color( 0, 0, 0 ) );
 	gl::draw(*mySurface_);
 
 }

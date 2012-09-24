@@ -15,6 +15,7 @@ public:
 	int b;
 	int alpha;
 
+	Node();
 	Node(int x_coord, int y_coord, int rect_width, int rect_height, int red, int green, int blue, int alpha_opacity);
 	~Node(void);
 

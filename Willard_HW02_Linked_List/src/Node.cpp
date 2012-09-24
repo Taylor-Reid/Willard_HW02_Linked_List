@@ -2,6 +2,20 @@
 #include "Node.h"
 
 
+Node::Node(){
+	next = this;
+	prev = this;
+	x = 0;
+	y = 0;
+	width = 0;
+	height = 0;
+	r = 0;
+	g = 0;
+	b = 0;
+	alpha = 0;
+
+}
+
 Node::Node(int x_coord, int y_coord, int rect_width, int rect_height, int red, int green, int blue, int alpha_opacity)
 {
 	// Initialize all the variables
@@ -61,12 +75,12 @@ void Node::deleteFromList(Node* remove_me){
 
 void Node::reverseList(Node* sentinel) {
 	// The list will rearrange itself around the sentinel
-	Node* cur = sentinel->next;
-	while(cur != sentinel){
+	Node* cur = sentinel;
+	do{
 		Node* temp = cur->next; // Swap next and prev
 		cur->next = cur->prev;
 		cur->prev = temp;
-		cur = cur->prev; // Remember, we're done, so prev is the new next
-	}
+		cur = cur->prev; // prev is the new next
+	}while(cur != sentinel);
 
 }
