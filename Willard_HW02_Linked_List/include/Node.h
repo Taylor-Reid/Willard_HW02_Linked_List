@@ -17,10 +17,11 @@ public:
 
 	Node();
 	Node(int x_coord, int y_coord, int rect_width, int rect_height, int red, int green, int blue, int alpha_opacity);
-	~Node(void);
+	//~Node(void);
 
 	void insert(Node* insert_me, Node* after_me);
+	void insert_after(Node* insert, Node* sentinel);
 	int listLength(Node* sentinel);
 	void deleteFromList(Node* remove_me);
-	void reverseList(Node* sentinel);
+	//void reverseList(Node* sentinel);
 };

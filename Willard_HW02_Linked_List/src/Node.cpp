@@ -42,10 +42,11 @@ Node::Node(int x_coord, int y_coord, int rect_width, int rect_height, int red, i
 
 }
 
-
+/*
 Node::~Node(void)
 {
 }
+*/
 
 void Node::insert(Node* insert_me, Node* after_me){
 	insert_me->next = after_me->next;  // Both insert_me and after_me lead to the next node
@@ -54,6 +55,20 @@ void Node::insert(Node* insert_me, Node* after_me){
 	insert_me->next->prev = insert_me;  //  The next node points back to insert me with its prev
 	// If Dr. Seuss wrote C++...
 }
+
+void Node::insert_after(Node* insert, Node* sentinel)
+{
+insert->next = sentinel;
+insert->prev = sentinel->prev;
+sentinel->prev->next = insert;
+sentinel->prev = insert;
+/*Node* temp = sentinel->prev_;
+insert->next_ = sentinel;
+insert->prev_ = temp;
+//insert->prev_->next_ = insert;
+sentinel->prev_ = insert;*/
+}
+
 
 int Node::listLength(Node* sentinel){
 	Node* cur = sentinel->next;
@@ -72,7 +87,7 @@ void Node::deleteFromList(Node* remove_me){
 	//  The remove_me node is free
 	remove_me->~Node(); // Let remove_me be reclaimed
 }
-
+/*
 void Node::reverseList(Node* sentinel) {
 	// The list will rearrange itself around the sentinel
 	Node* cur = sentinel;
@@ -82,5 +97,5 @@ void Node::reverseList(Node* sentinel) {
 		cur->prev = temp;
 		cur = cur->prev; // prev is the new next
 	}while(cur != sentinel);
-
 }
+*/
