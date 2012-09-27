@@ -16,6 +16,14 @@ The drawRectangle method came from my HomeWork01 app.
 
 */
 
+/*
+	This looks pretty good, the only issues I have seen are isues of de-cluttering the code,
+	using simpler methods/functions.
+	It would also be helpful if you added slightly more detailed comments to your functions describing
+	what they do and what inputs they require.
+
+*/
+
 
 #include "Resources.h"
 
@@ -106,7 +114,7 @@ void Willard_HW02_Linked_ListApp::setup()
 	mouse_y = 0;
 
 	// Initialize linked list
-	sentinel = &Node(100,100,100,100,127,127,127,5);
+	sentinel = new Node(100,100,100,100,127,127,127,5);//fixed per your instruction
 	
 	// Fill List
 	temp = sentinel;
@@ -114,7 +122,7 @@ void Willard_HW02_Linked_ListApp::setup()
 	for(int i = 0; i<25; i++){
 		cur = (new Node((kAppWidth/4)+(i*6),(kAppHeight/4)+(i*6),200-(12*i),200
 			-(12*i),80,(16*i),70+(5*i),255-(10*i)));
-		((Node)*cur).insert_after(cur, temp);
+		((Node)*cur).insert_after(cur, temp);// I believe this can be written simply as cur->insert_after(cur,temp);
 		temp = cur;
 	}
 	if(rev){
@@ -132,7 +140,7 @@ void Willard_HW02_Linked_ListApp::setup()
 Makes all the pixels in the surface black
 */
 void Willard_HW02_Linked_ListApp::clear(){
-
+	//you can make all the surface black using gl::clear(0,0,0) in the draw method
 	Color c = Color(0,0,0);
 	for(int y = 0; y < kSurfaceSize; y++){
 		for(int x = 0; x < kSurfaceSize; x++){
@@ -158,7 +166,9 @@ void drawList(Node* sentinel){
 }
 
 void Willard_HW02_Linked_ListApp::drawRectangle(Node* n){
-
+	// It might be simpler do draw your shapes using the built in cinder::gl::drawRect()
+	// that way you don't have to worry about modifying the surface directly, since that is not our assigment this time. 
+	// cinder::gl::drawRect() can execute in the draw method. 
 	uint8_t a = n->alpha;
 	
 	if(n->width <= 0) return;
@@ -220,6 +230,7 @@ void Willard_HW02_Linked_ListApp::keyDown(KeyEvent event)
 		}
 	}
 
+	// I can't figure out what these next two events do in your code. Are they functioning?
 	if(event.getCode() == KeyEvent::KEY_SPACE){
 		reverseList(sentinel);
 	}
@@ -238,6 +249,7 @@ void Willard_HW02_Linked_ListApp::update()
 void Willard_HW02_Linked_ListApp::draw()
 {
 	//gl::draw(*mySurface_);
+	//all of these if statements can go into your update method, so that your draw method is not as cluttered.
 	if(color == 1) {
 		red = red + strobeInterval;
 		green = green - (strobeInterval/2);
@@ -265,6 +277,7 @@ void Willard_HW02_Linked_ListApp::draw()
 	}
 
 	if(showMenu){
+		// ahh, this is a nice simple way to draw strings to the screen. I like this.
 		gl::clear(Color(0,0,0));
 		gl::drawString("Press \"?\", then click to reorder the pyramid stack", 
 			Vec2f(150.0f,150.0f),Color(red,green,blue), *font);
